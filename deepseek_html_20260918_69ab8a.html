@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riya Bakes | Scrumptybies</title>
+    
+    <!-- Google Fonts for Gen Z Vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Syne:wght@700;800&family=Caveat:wght@700&family=Sacramento&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Gen Z Palette */
+            --neon-pink: #ff2a6d;
+            --neon-blue: #05d9e8;
+            --neon-purple: #d1f7ff;
+            --dark-bg: #0d0221;
+            --light-bg: #f8f9fa;
+            --card-bg-light: rgba(255, 255, 255, 0.8);
+            --card-bg-dark: rgba(13, 2, 33, 0.8);
+            --text-dark: #0d0221;
+            --text-light: #ffffff;
+            --gradient-main: linear-gradient(135deg, var(--neon-pink), var(--neon-blue));
+            --font-heading: 'Syne', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --font-hand: 'Caveat', cursive;
+            --font-logo: 'Sacramento', cursive;
+        }
+
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --light-bg: #0d0221;
+            --text-dark: #ffffff;
+            --card-bg-light: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: background-color 0.4s, color 0.4s;
+            overflow-x: hidden;
+        }
+
+        /* --- Page Routing System --- */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        body.dark-mode nav {
+            background: rgba(13, 2, 33, 0.7);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-logo {
+            font-family: var(--font-logo);
+            font-size: 2rem;
+            color: var(--text-light);
+            text-shadow: 0 0 10px var(--neon-blue);
+            cursor: pointer;
+        }
+        
+        body.dark-mode .nav-logo {
+             color: var(--text-light);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        body.dark-mode nav a {
+            color: var(--text-light);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--neon-pink);
+            text-shadow: 0 0 8px rgba(255, 42, 109, 0.5);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--text-dark);
+            color: var(--text-dark);
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .theme-toggle {
+            border-color: var(--text-light);
+            color: var(--text-light);
+        }
+
+        /* --- Ticker Marquee --- */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: var(--gradient-main);
+            padding: 10px 0;
+            margin-top: 70px; /* Offset for nav */
+            white-space: nowrap;
+        }
+
+        .ticker {
+            display: inline-block;
+            animation: ticker 20s linear infinite;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #fff;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* --- Hero Section --- */
+        header {
+            background: var(--gradient-main);
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative blobs */
+        header::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--neon-purple);
+            border-radius: 50%;
+            filter: blur(100px);
+            top: -100px;
+            left: -100px;
+            opacity: 0.6;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            filter: blur(100px);
+            bottom: -50px;
+            right: -50px;
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            max-width: 1100px;
+            width: 100%;
+            flex-wrap: wrap;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: right;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .hero-text h1 span {
+            font-family: var(--font-hand);
+            font-size: 5rem;
+            color: var(--neon-blue);
+            text-transform: none;
+            display: block;
+            line-height: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transition: transform 0.4s;
+            border: 4px solid rgba(255,255,255,0.2);
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.03) rotate(2deg);
+        }
+
+        /* --- Generic Section Styles --- */
+        .section-container {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-main);
+            border-radius: 2px;
+        }
+
+        /* --- About Section --- */
+        .about-section {
+            background: var(--card-bg-light);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.3);
+            margin-top: -60px; /* Overlap hero */
+            position: relative;
+            z-index: 10;
+        }
+
+        body.dark-mode .about-section {
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+
+        .about-text h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--neon-pink);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: var(--text-dark);
+            opacity: 0.9;
+        }
+
+        .about-text ul {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .about-text li {
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.05rem;
+        }
+
+        .about-text li span {
+            font-size: 1.5rem;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-image img {
+            max-width: 350px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* --- Menu / Card Grids --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg-light);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        body.dark-mode .card {
+             border: 1px solid rgba(255,255,255,0.1);
+             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 42, 109, 0.15);
+            border-color: var(--neon-pink);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .price {
+            font-weight: 800;
+            color: var(--neon-blue);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* --- Testimonials --- */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg-light);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border: 2px dashed rgba(255, 42, 109, 0.3);
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .testimonial-card {
+            border: 2px dashed rgba(5, 217, 232, 0.3);
+        }
+
+        .testimonial-card:hover {
+            border-style: solid;
+            border-color: var(--neon-pink);
+            transform: rotate(1deg);
+        }
+
+        .testimonial-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .testimonial-date {
+            font-family: var(--font-heading);
+            color: var(--neon-pink);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Contact & Map --- */
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            background: var(--card-bg-light);
+            padding: 50px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        body.dark-mode .contact-wrapper {
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--neon-pink);
+            text-transform: uppercase;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: var(--gradient-main);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 800;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255, 42, 109, 0.4);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 42, 109, 0.6);
+        }
+
+        .map-container {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 3px solid var(--neon-blue);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            border: 0;
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        body.dark-mode .map-container iframe {
+            filter: invert(90%) hue-rotate(180deg) grayscale(20%);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--dark-bg);
+            color: #fff;
+            font-family: var(--font-heading);
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 900px) {
+            .hero-text { text-align: center; }
+            .hero-text h1 { font-size: 3rem; }
+            .hero-text h1 span { font-size: 4rem; }
+            .about-section { padding: 30px; margin-top: 0; border-radius: 0; }
+            nav { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            .ticker-wrap { margin-top: 120px; }
+        }
+
+        /* --- VISUAL EDITOR STYLES --- */
+        #visual-editor-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            max-height: 80vh;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: var(--font-body);
+            color: #333;
+        }
+        #visual-editor-panel.open {
+            display: flex;
+        }
+        .ve-header {
+            background: var(--gradient-main);
+            color: #fff;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .ve-header button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .ve-body {
+            padding: 15px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .ve-body label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .ve-body input, .ve-body textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: var(--font-body);
+        }
+        .ve-footer {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        .ve-save-btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+        .ve-save-btn:hover {
+            background: var(--neon-pink);
+        }
+        #edit-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 9998;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-body);
+        }
+        #edit-toggle-btn:hover {
+            background: var(--neon-pink);
+        }
+        .editable-img {
+            cursor: pointer;
+            position: relative;
+        }
+        .editable-img:hover::after {
+            content: '📷 Click to change';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo" id="nav-logo"></div>
+        <ul id="nav-menu">
+            <!-- Navigation links will be generated by JavaScript -->
+            <li><button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">🌙</button></li>
+        </ul>
+    </nav>
+
+    <!-- Ticker Marquee -->
+    <div class="ticker-wrap">
+        <div class="ticker" id="ticker-content"></div>
+    </div>
+
+    <!-- ================= PAGE: HOME ================= -->
+    <div id="page-home" class="page active">
+        <header>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1><span id="hero-title-top"></span> <span id="hero-title-main"></span></h1>
+                </div>
+                <div class="hero-image">
+                    <img id="hero-image" class="editable-img" src="" alt="Riya Bakes Hero" onclick="handleImageUpload('hero.image')">
+                </div>
+            </div>
+        </header>
+
+        <section class="section-container">
+            <div class="about-section">
+                <div class="about-text">
+                    <h2 id="about-title"></h2>
+                    <p id="about-p1"></p>
+                    <p id="about-p2"></p>
+                    <ul id="about-highlights"></ul>
+                </div>
+                <div class="about-image">
+                    <img id="about-image" class="editable-img" src="" alt="Riya Avatar" onclick="handleImageUpload('about.image')">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= PAGE: MENU ================= -->
+    <div id="page-menu" class="page">
+        <section class="section-container" id="menu-container">
+            <!-- Menu sections will be generated by JavaScript -->
+        </section>
+    </div>
+
+    <!-- ================= PAGE: TESTIMONIALS ================= -->
+    <div id="page-testimonials" class="page">
+        <section class="section-container">
+            <h2 class="section-title">The Reviews Are In</h2>
+            <div class="testimonial-grid" id="testimonial-container">
+                <!-- Testimonials will be generated by JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= PAGE: CONTACT ================= -->
+    <div id="page-contact" class="page">
+        <section class="section-container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2 id="contact-title"></h2>
+                    <p id="contact-text"></p>
+                    <ul style="list-style: none; font-weight: 700; margin-top: 20px;" id="contact-methods"></ul>
+                    <a href="#" class="contact-btn" id="contact-btn"></a>
+                </div>
+                <div class="map-container">
+                    <iframe id="contact-map" src="" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Riya Bakes (Scrumptybies). All rights reserved.</p>
+    </footer>
+
+    <!-- VISUAL EDITOR PANEL -->
+    <button id="edit-toggle-btn" onclick="toggleEditor()">✏️ Edit Mode</button>
+    
+    <div id="visual-editor-panel">
+        <div class="ve-header">
+            <span>Visual Editor</span>
+            <button onclick="toggleEditor()">✖</button>
+        </div>
+        <div class="ve-body" id="ve-form-container">
+            <!-- Form fields generated here -->
+            <p style="text-align:center; color:#666;">Loading content...</p>
+        </div>
+        <div class="ve-footer">
+            <button class="ve-save-btn" onclick="saveAndDownload()">💾 Save & Generate Code</button>
+            <p style="font-size: 0.7rem; color: #666; margin-top: 10px;">A popup will appear with your updated code. Copy it and paste it into your index.html file.</p>
+        </div>
+    </div>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // --- DEFAULT CONTENT (Used if no saved data exists) ---
+        let SITE_CONTENT = {
+            siteTitle: "Riya Bakes | Scrumptybies",
+            logoText: "Riya Bakes",
+            navLinks: [
+                { text: "Home", page: "home" },
+                { text: "Menu", page: "menu" },
+                { text: "Reviews", page: "testimonials" },
+                { text: "Order", page: "contact" }
+            ],
+            tickerText: "🍰 WSQ CERTIFIED HOME BAKER 🧁 SMALL BATCH ARTISANAL TREATS 🍪 FRESHLY BAKED IN SINGAPORE 🎂 DM TO ORDER 🍫 ",
+            hero: {
+                titleTop: "Hi, I'm Riya.",
+                titleMain: "A WSQ Certified home baker from Singapore.",
+                image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000&auto=format&fit=crop"
+            },
+            about: {
+                title: "The baker behind scrumptybies.",
+                paragraph1: "Based right here in Singapore, I specialize in crafting small-batch, artisanal sweet treats that bring a little extra joy to your everyday moments and celebrations.",
+                paragraph2: "As a WSQ Certified baker, I combine professional baking techniques with a whole lot of heart. Every tart, cake, and cookie is made fresh using quality ingredients—because you deserve nothing less than the best.",
+                highlights: [
+                    { icon: "📍", text: "Proudly Local: Freshly baked in small batches." },
+                    { icon: "🎓", text: "WSQ Certified: Professional baking standards." },
+                    { icon: "💖", text: "Made with Love: For milestones or just because." }
+                ],
+                image: "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?q=80&w=500&auto=format&fit=crop"
+            },
+            menuSections: [
+                {
+                    title: "Tres Leches",
+                    items: [
+                        { name: "Original", price: "$16.50", description: "Ultra-moist sponge soaked in three sweet milks, topped with whipped cream and cinnamon.", image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=800&auto=format&fit=crop" },
+                        { name: "Rasamalai", price: "$17.50", description: "A cozy fusion twist! Three-milk sponge infused with aromatic spiced chai tea.", image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=800&auto=format&fit=crop" },
+                        { name: "Chai", price: "$16.50", description: "East-meets-West: cardamom, saffron, and traditional Indian tea flavors.", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop" }
+                    ]
+                },
+                {
+                    title: "Brownies",
+                    items: [
+                        { name: "Classic", price: "$6.50", description: "Rich, fudgy, and deeply chocolatey. The ultimate brownie experience.", image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=800&auto=format&fit=crop" },
+                        { name: "Biscoff", price: "$6.50", description: "Packed with caramelized Lotus Biscoff spread and a crunchy biscuit topping.", image: "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?q=80&w=800&auto=format&fit=crop" },
+                        { name: "Nutella", price: "$6.50", description: "Our signature fudgy brownie swirled with a generous, gooey swirl of Nutella.", image: "https://images.unsplash.com/photo-1607920592519-4027a63a9f4c?q=80&w=800&auto=format&fit=crop" },
+                        { name: "Red Velvet", price: "$6.50", description: "A vibrant, velvety cocoa base marbled with a rich cream cheese swirl.", image: "https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?q=80&w=800&auto=format&fit=crop" }
+                    ]
+                },
+                {
+                    title: "Nutella Tarts",
+                    items: [
+                        { name: "Signature Nutella Tarts", price: "", description: "Buttery, crumbly tart shell filled to the brim with rich, velvety Nutella.", image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=1200&auto=format&fit=crop" }
+                    ]
+                }
+            ],
+            testimonials: [
+                { date: "7 Sept 2025", text: "\"Who would have thought Biscoff and brownies would be a perfect match until I gave it a try? Everything that came out from the box was just amazing. The brownies were fudgy, moist, and not overly sweet. My whole family enjoyed it!...\"", image: "https://images.unsplash.com/photo-1517093157656-b9eccef91cb1?q=80&w=800&auto=format&fit=crop" },
+                { date: "11 May 2025", text: "\"Thank you so much for making my birthday cake! Everyone loved it. The cake was moist and the frosting was perfect. Highly recommended!\"", image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=800&auto=format&fit=crop" },
+                { date: "11 Dec 2024", text: "\"Just like these Red Velvet Brownies and NOW - they are absolutely amazing! Perfectly rich, moist, and packed with flavor. The cream cheese swirl really takes it to the next level.\"", image: "https://images.unsplash.com/photo-1548848221-0c2e497ed557?q=80&w=800&auto=format&fit=crop" },
+                { date: "29 Dec 2024", text: "\"I am literally blown away by @scrumptybies baking. The brownies are good, soft, fudgy and delicious. I will definitely order again!\"", image: "https://images.unsplash.com/photo-1511381939415-e44015466834?q=80&w=800&auto=format&fit=crop" }
+            ],
+            contact: {
+                title: "Ready to order?",
+                text: "All orders and custom requests are handled directly via WhatsApp or Instagram DM so we can chat about your cravings, dietary needs, or event details.",
+                methods: [
+                    { label: "📸 Instagram:", value: "@scrumptybies", link: "#" },
+                    { label: "💬 WhatsApp:", value: "+65 9123 4567", link: "#" }
+                ],
+                buttonText: "DM to Order",
+                buttonLink: "#",
+                mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127639.68448541134!2d103.75803439258465!3d1.3139961037554997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1767bcf3d5c3%3A0x6b7c9c5a7e5e4d0!2sSingapore!5e0!3m2!1sen!2ssg!4v1700000000000!5m2!1sen!2ssg"
+            }
+        };
+
+        // --- RENDER FUNCTIONS ---
+        function renderSite() {
+            // 1. Set Page Title
+            document.title = SITE_CONTENT.siteTitle;
+            document.getElementById('year').innerText = new Date().getFullYear();
+
+            // 2. Navigation & Logo
+            document.getElementById('nav-logo').innerText = SITE_CONTENT.logoText;
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.innerHTML = ''; 
+            SITE_CONTENT.navLinks.forEach(link => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.innerText = link.text;
+                a.className = 'nav-link';
+                a.id = 'nav-' + link.page;
+                a.onclick = () => showPage(link.page);
+                li.appendChild(a);
+                navMenu.insertBefore(li, navMenu.firstChild);
+            });
+            const themeLi = document.createElement('li');
+            themeLi.innerHTML = '<button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">🌙</button>';
+            navMenu.appendChild(themeLi);
+            document.getElementById('nav-home').classList.add('active');
+
+            // 3. Ticker
+            document.getElementById('ticker-content').innerText = SITE_CONTENT.tickerText + SITE_CONTENT.tickerText;
+
+            // 4. Home Page
+            document.getElementById('hero-title-top').innerText = SITE_CONTENT.hero.titleTop;
+            document.getElementById('hero-title-main').innerText = SITE_CONTENT.hero.titleMain;
+            document.getElementById('hero-image').src = SITE_CONTENT.hero.image;
+
+            document.getElementById('about-title').innerText = SITE_CONTENT.about.title;
+            document.getElementById('about-p1').innerText = SITE_CONTENT.about.paragraph1;
+            document.getElementById('about-p2').innerText = SITE_CONTENT.about.paragraph2;
+            document.getElementById('about-image').src = SITE_CONTENT.about.image;
+
+            const highlightsList = document.getElementById('about-highlights');
+            highlightsList.innerHTML = '';
+            SITE_CONTENT.about.highlights.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${item.icon}</span> ${item.text}`;
+                highlightsList.appendChild(li);
+            });
+
+            // 5. Menu Page
+            const menuContainer = document.getElementById('menu-container');
+            menuContainer.innerHTML = '';
+            SITE_CONTENT.menuSections.forEach((section, sIndex) => {
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.className = 'section-title';
+                sectionTitle.innerText = section.title;
+                menuContainer.appendChild(sectionTitle);
+
+                const grid = document.createElement('div');
+                grid.className = 'grid-layout';
+                grid.style.marginBottom = '80px';
+
+                section.items.forEach((item, iIndex) => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    if (section.items.length === 1 && section.title === "Nutella Tarts") {
+                        card.style.gridColumn = "1 / -1";
+                        card.style.maxWidth = "800px";
+                        card.style.margin = "0 auto";
+                    }
+                    card.innerHTML = `
+                        <img src="${item.image}" class="editable-img" alt="${item.name}" onclick="handleImageUpload('menuSections[${sIndex}].items[${iIndex}].image')">
+                        <div class="card-content">
+                            <h3>${item.name}</h3>
+                            ${item.price ? `<p class="price">${item.price}</p>` : ''}
+                            <p class="description">${item.description}</p>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+                menuContainer.appendChild(grid);
+            });
+
+            // 6. Testimonials Page
+            const testimonialContainer = document.getElementById('testimonial-container');
+            testimonialContainer.innerHTML = '';
+            SITE_CONTENT.testimonials.forEach((test, index) => {
+                const card = document.createElement('div');
+                card.className = 'testimonial-card';
+                card.innerHTML = `
+                    <img src="${test.image}" class="editable-img" alt="Review" onclick="handleImageUpload('testimonials[${index}].image')">
+                    <p class="testimonial-date">${test.date}</p>
+                    <p class="testimonial-text">${test.text}</p>
+                `;
+                testimonialContainer.appendChild(card);
+            });
+
+            // 7. Contact Page
+            document.getElementById('contact-title').innerText = SITE_CONTENT.contact.title;
+            document.getElementById('contact-text').innerText = SITE_CONTENT.contact.text;
+            const methodsList = document.getElementById('contact-methods');
+            methodsList.innerHTML = '';
+            SITE_CONTENT.contact.methods.forEach(method => {
+                const li = document.createElement('li');
+                li.style.marginBottom = '10px';
+                li.innerHTML = `${method.label} <a href="${method.link}" style="color: var(--neon-pink); text-decoration: none;">${method.value}</a>`;
+                methodsList.appendChild(li);
+            });
+            const contactBtn = document.getElementById('contact-btn');
+            contactBtn.innerText = SITE_CONTENT.contact.buttonText;
+            contactBtn.href = SITE_CONTENT.contact.buttonLink;
+            document.getElementById('contact-map').src = SITE_CONTENT.contact.mapEmbedUrl;
+
+            // 8. Theme Preference
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-btn').innerText = '☀️';
+            }
+        }
+
+        // --- VISUAL EDITOR LOGIC ---
+        let isEditorOpen = false;
+
+        function toggleEditor() {
+            isEditorOpen = !isEditorOpen;
+            const panel = document.getElementById('visual-editor-panel');
+            const btn = document.getElementById('edit-toggle-btn');
+            
+            if (isEditorOpen) {
+                panel.classList.add('open');
+                btn.innerText = '✖ Close Editor';
+                buildEditorForm();
+            } else {
+                panel.classList.remove('open');
+                btn.innerText = '✏️ Edit Mode';
+            }
+        }
+
+        function buildEditorForm() {
+            const container = document.getElementById('ve-form-container');
+            container.innerHTML = '';
+
+            function createInput(label, value, path) {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <label>${label}</label>
+                    <input type="text" value="${value.replace(/"/g, '&quot;')}" oninput="updateContent('${path}', this.value)">
+                `;
+                return div;
+            }
+
+            // --- General ---
+            container.appendChild(createInput("Logo Text", SITE_CONTENT.logoText, "logoText"));
+            container.appendChild(createInput("Ticker Text", SITE_CONTENT.tickerText, "tickerText"));
+            container.appendChild(document.createElement('hr'));
+
+            // --- Hero ---
+            container.appendChild(createInput("Hero Title Top", SITE_CONTENT.hero.titleTop, "hero.titleTop"));
+            container.appendChild(createInput("Hero Title Main", SITE_CONTENT.hero.titleMain, "hero.titleMain"));
+            container.appendChild(document.createElement('hr'));
+
+            // --- About ---
+            container.appendChild(createInput("About Title", SITE_CONTENT.about.title, "about.title"));
+            container.appendChild(createInput("About Paragraph 1", SITE_CONTENT.about.paragraph1, "about.paragraph1"));
+            container.appendChild(createInput("About Paragraph 2", SITE_CONTENT.about.paragraph2, "about.paragraph2"));
+            container.appendChild(document.createElement('hr'));
+
+            // --- Menu ---
+            SITE_CONTENT.menuSections.forEach((section, sIndex) => {
+                const sectionHeader = document.createElement('h3');
+                sectionHeader.innerText = `Menu: ${section.title}`;
+                sectionHeader.style.marginTop = "15px";
+                sectionHeader.style.color = "var(--neon-pink)";
+                container.appendChild(sectionHeader);
+
+                section.items.forEach((item, iIndex) => {
+                    container.appendChild(createInput(`Item ${iIndex+1} Name`, item.name, `menuSections[${sIndex}].items[${iIndex}].name`));
+                    container.appendChild(createInput(`Item ${iIndex+1} Price`, item.price, `menuSections[${sIndex}].items[${iIndex}].price`));
+                    container.appendChild(createInput(`Item ${iIndex+1} Description`, item.description, `menuSections[${sIndex}].items[${iIndex}].description`));
+                });
+            });
+
+            // --- Testimonials ---
+            const testHeader = document.createElement('h3');
+            testHeader.innerText = "Testimonials";
+            testHeader.style.marginTop = "15px";
+            testHeader.style.color = "var(--neon-pink)";
+            container.appendChild(testHeader);
+            SITE_CONTENT.testimonials.forEach((test, index) => {
+                container.appendChild(createInput(`Review ${index+1} Date`, test.date, `testimonials[${index}].date`));
+                container.appendChild(createInput(`Review ${index+1} Text`, test.text, `testimonials[${index}].text`));
+            });
+
+            // --- Contact ---
+            const contactHeader = document.createElement('h3');
+            contactHeader.innerText = "Contact";
+            contactHeader.style.marginTop = "15px";
+            contactHeader.style.color = "var(--neon-pink)";
+            container.appendChild(contactHeader);
+            container.appendChild(createInput("Contact Title", SITE_CONTENT.contact.title, "contact.title"));
+            container.appendChild(createInput("Contact Text", SITE_CONTENT.contact.text, "contact.text"));
+            container.appendChild(createInput("Instagram Handle", SITE_CONTENT.contact.methods[0].value, "contact.methods[0].value"));
+            container.appendChild(createInput("Instagram Link", SITE_CONTENT.contact.methods[0].link, "contact.methods[0].link"));
+            container.appendChild(createInput("WhatsApp Number", SITE_CONTENT.contact.methods[1].value, "contact.methods[1].value"));
+            container.appendChild(createInput("WhatsApp Link", SITE_CONTENT.contact.methods[1].link, "contact.methods[1].link"));
+            container.appendChild(createInput("Button Text", SITE_CONTENT.contact.buttonText, "contact.buttonText"));
+            container.appendChild(createInput("Button Link", SITE_CONTENT.contact.buttonLink, "contact.buttonLink"));
+            container.appendChild(createInput("Map Embed URL", SITE_CONTENT.contact.mapEmbedUrl, "contact.mapEmbedUrl"));
+        }
+
+        window.updateContent = function(path, value) {
+            const keys = path.split('.');
+            let obj = SITE_CONTENT;
+            for (let i = 0; i < keys.length - 1; i++) {
+                const key = keys[i].replace(/\[(\d+)\]/g, '.$1');
+                const keyParts = key.split('.');
+                for (let kp of keyParts) {
+                    obj = obj[kp];
+                }
+            }
+            const lastKey = keys[keys.length - 1].replace(/\[(\d+)\]/g, '.$1');
+            const lastParts = lastKey.split('.');
+            if (lastParts.length === 1) {
+                obj[lastParts[0]] = value;
+            } else {
+                let finalObj = obj;
+                for (let i = 0; i < lastParts.length - 1; i++) {
+                    finalObj = finalObj[lastParts[i]];
+                }
+                finalObj[lastParts[lastParts.length - 1]] = value;
+            }
+            renderSite();
+        };
+
+        window.handleImageUpload = function(path) {
+            if (!isEditorOpen) {
+                alert("Please click '✏️ Edit Mode' in the bottom right corner first to change images.");
+                return;
+            }
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const base64String = event.target.result;
+                    const keys = path.split('.');
+                    let obj = SITE_CONTENT;
+                    for (let i = 0; i < keys.length - 1; i++) {
+                        const key = keys[i].replace(/\[(\d+)\]/g, '.$1');
+                        const keyParts = key.split('.');
+                        for (let kp of keyParts) {
+                            obj = obj[kp];
+                        }
+                    }
+                    const lastKey = keys[keys.length - 1].replace(/\[(\d+)\]/g, '.$1');
+                    const lastParts = lastKey.split('.');
+                    if (lastParts.length === 1) {
+                        obj[lastParts[0]] = base64String;
+                    } else {
+                        let finalObj = obj;
+                        for (let i = 0; i < lastParts.length - 1; i++) {
+                            finalObj = finalObj[lastParts[i]];
+                        }
+                        finalObj[lastParts[lastParts.length - 1]] = base64String;
+                    }
+                    renderSite();
+                };
+                reader.readAsDataURL(file);
+            };
+            input.click();
+        };
+
+        // --- GENERATE CODE TO COPY (NEW SIMPLER VERSION) ---
+        function saveAndDownload() {
+            const contentString = JSON.stringify(SITE_CONTENT, null, 4);
+            
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '10%';
+            modal.style.left = '10%';
+            modal.style.width = '80%';
+            modal.style.height = '80%';
+            modal.style.background = '#fff';
+            modal.style.zIndex = '10000';
+            modal.style.padding = '20px';
+            modal.style.borderRadius = '10px';
+            modal.style.boxShadow = '0 0 20px rgba(0,0,0,0.5)';
+            modal.style.display = 'flex';
+            modal.style.flexDirection = 'column';
+            
+            modal.innerHTML = `
+                <h3 style="margin-bottom:10px; font-family:sans-serif;">✅ Step 1: Copy this code</h3>
+                <p style="margin-bottom:10px; font-family:sans-serif; font-size:0.9rem;">Press Ctrl+C (or Cmd+C) to copy the text below. Then follow Step 2.</p>
+                <textarea id="copy-area" style="flex:1; width:100%; font-family:monospace; font-size:12px; padding:10px; border:1px solid #ccc; border-radius:5px; resize:none;">${contentString}</textarea>
+                <div style="margin-top:15px; display:flex; gap:10px;">
+                    <button onclick="document.getElementById('copy-area').select(); document.execCommand('copy'); alert('Copied to clipboard!');" style="padding:10px 20px; background:#000; color:#fff; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">📋 Copy to Clipboard</button>
+                    <button onclick="this.parentElement.parentElement.remove()" style="padding:10px 20px; background:#ccc; color:#000; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">✖ Close</button>
+                </div>
+                <p style="margin-top:15px; font-family:sans-serif; font-size:0.9rem; background:#f0f0f0; padding:10px; border-radius:5px;">
+                    <strong>✅ Step 2:</strong> Open your <code>index.html</code> file in a text editor. Find the line that starts with <code>let SITE_CONTENT = {</code> and ends with <code>};</code>. Replace that entire block with the code you just copied. Then save the file and upload it to GitHub.
+                </p>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            setTimeout(() => {
+                const ta = document.getElementById('copy-area');
+                if(ta) { ta.focus(); ta.select(); }
+            }, 100);
+        }
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            const selectedPage = document.getElementById('page-' + pageId);
+            if (selectedPage) selectedPage.classList.add('active');
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) activeNav.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('theme-btn');
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeBtn.innerText = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeBtn.innerText = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderSite();
+        });
+
+    </script>
+
+</body>
+</html>
