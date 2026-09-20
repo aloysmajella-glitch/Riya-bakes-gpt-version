@@ -1,7 +1,10 @@
 {
   "name": "riya-bakes-gpt-version",
   "compatibility_date": "2026-09-21",
+  "main": "index.html",
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "single-page-application"
   }
 }
