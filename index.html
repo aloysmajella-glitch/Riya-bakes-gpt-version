@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riya Bakes | Scrumptybies</title>
-    
+
     <!-- Google Fonts for Gen Z Vibe -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Syne:wght@700;800&family=Caveat:wght@700&family=Sacramento&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
-            /* Gen Z Palette */
             --neon-pink: #ff2a6d;
             --neon-blue: #05d9e8;
             --neon-purple: #d1f7ff;
@@ -29,7 +28,6 @@
             --font-logo: 'Sacramento', cursive;
         }
 
-        /* Dark Mode Variables */
         body.dark-mode {
             --light-bg: #0d0221;
             --text-dark: #ffffff;
@@ -52,7 +50,6 @@
             overflow-x: hidden;
         }
 
-        /* --- Page Routing System --- */
         .page {
             display: none;
             animation: fadeIn 0.5s ease-out forwards;
@@ -67,7 +64,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Navigation --- */
         nav {
             position: fixed;
             top: 0;
@@ -95,7 +91,7 @@
             text-shadow: 0 0 10px var(--neon-blue);
             cursor: pointer;
         }
-        
+
         body.dark-mode .nav-logo {
              color: var(--text-light);
         }
@@ -143,13 +139,12 @@
             color: var(--text-light);
         }
 
-        /* --- Ticker Marquee --- */
         .ticker-wrap {
             width: 100%;
             overflow: hidden;
             background: var(--gradient-main);
             padding: 10px 0;
-            margin-top: 70px; /* Offset for nav */
+            margin-top: 70px;
             white-space: nowrap;
         }
 
@@ -169,7 +164,6 @@
             100% { transform: translate3d(-50%, 0, 0); }
         }
 
-        /* --- Hero Section --- */
         header {
             background: var(--gradient-main);
             min-height: 85vh;
@@ -184,7 +178,6 @@
             overflow: hidden;
         }
 
-        /* Decorative blobs */
         header::before {
             content: '';
             position: absolute;
@@ -266,7 +259,6 @@
             transform: scale(1.03) rotate(2deg);
         }
 
-        /* --- Generic Section Styles --- */
         .section-container {
             padding: 80px 20px;
             max-width: 1200px;
@@ -297,7 +289,6 @@
             border-radius: 2px;
         }
 
-        /* --- About Section --- */
         .about-section {
             background: var(--card-bg-light);
             backdrop-filter: blur(10px);
@@ -310,7 +301,7 @@
             border-radius: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border: 1px solid rgba(255,255,255,0.3);
-            margin-top: -60px; /* Overlap hero */
+            margin-top: -60px;
             position: relative;
             z-index: 10;
         }
@@ -373,7 +364,6 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        /* --- Menu / Card Grids --- */
         .grid-layout {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -440,7 +430,6 @@
             line-height: 1.5;
         }
 
-        /* --- Testimonials --- */
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -489,7 +478,6 @@
             letter-spacing: 1px;
         }
 
-        /* --- Contact & Map --- */
         .contact-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -560,7 +548,6 @@
             filter: invert(90%) hue-rotate(180deg) grayscale(20%);
         }
 
-        /* --- Footer --- */
         footer {
             text-align: center;
             padding: 30px;
@@ -572,7 +559,6 @@
             margin-top: 50px;
         }
 
-        /* --- Responsive Adjustments --- */
         @media (max-width: 900px) {
             .hero-text { text-align: center; }
             .hero-text h1 { font-size: 3rem; }
@@ -582,137 +568,22 @@
             nav ul { flex-wrap: wrap; justify-content: center; }
             .ticker-wrap { margin-top: 120px; }
         }
-
-        /* --- VISUAL EDITOR STYLES --- */
-        #visual-editor-panel {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 350px;
-            max-height: 80vh;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            z-index: 9999;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            font-family: var(--font-body);
-            color: #333;
-        }
-        #visual-editor-panel.open {
-            display: flex;
-        }
-        .ve-header {
-            background: var(--gradient-main);
-            color: #fff;
-            padding: 15px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .ve-header button {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-        .ve-body {
-            padding: 15px;
-            overflow-y: auto;
-            flex: 1;
-        }
-        .ve-body label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        .ve-body input, .ve-body textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-family: var(--font-body);
-        }
-        .ve-footer {
-            padding: 15px;
-            border-top: 1px solid #eee;
-            text-align: center;
-        }
-        .ve-save-btn {
-            background: #000;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-        }
-        .ve-save-btn:hover {
-            background: var(--neon-pink);
-        }
-        #edit-toggle-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #000;
-            color: #fff;
-            border: none;
-            padding: 15px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            z-index: 9998;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--font-body);
-        }
-        #edit-toggle-btn:hover {
-            background: var(--neon-pink);
-        }
-        .editable-img {
-            cursor: pointer;
-            position: relative;
-        }
-        .editable-img:hover::after {
-            content: '📷 Click to change';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.7);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav>
         <div class="nav-logo" id="nav-logo"></div>
         <ul id="nav-menu">
-            <!-- Navigation links will be generated by JavaScript -->
             <li><button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">🌙</button></li>
         </ul>
     </nav>
 
-    <!-- Ticker Marquee -->
     <div class="ticker-wrap">
         <div class="ticker" id="ticker-content"></div>
     </div>
 
-    <!-- ================= PAGE: HOME ================= -->
+    <!-- HOME PAGE -->
     <div id="page-home" class="page active">
         <header>
             <div class="hero-content">
@@ -720,11 +591,10 @@
                     <h1><span id="hero-title-top"></span> <span id="hero-title-main"></span></h1>
                 </div>
                 <div class="hero-image">
-                    <img id="hero-image" class="editable-img" src="" alt="Riya Bakes Hero" onclick="handleImageUpload('hero.image')">
+                    <img id="hero-image" src="" alt="Hero">
                 </div>
             </div>
         </header>
-
         <section class="section-container">
             <div class="about-section">
                 <div class="about-text">
@@ -734,30 +604,26 @@
                     <ul id="about-highlights"></ul>
                 </div>
                 <div class="about-image">
-                    <img id="about-image" class="editable-img" src="" alt="Riya Avatar" onclick="handleImageUpload('about.image')">
+                    <img id="about-image" src="" alt="Avatar">
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- ================= PAGE: MENU ================= -->
+    <!-- MENU PAGE -->
     <div id="page-menu" class="page">
-        <section class="section-container" id="menu-container">
-            <!-- Menu sections will be generated by JavaScript -->
-        </section>
+        <section class="section-container" id="menu-container"></section>
     </div>
 
-    <!-- ================= PAGE: TESTIMONIALS ================= -->
+    <!-- TESTIMONIALS PAGE -->
     <div id="page-testimonials" class="page">
         <section class="section-container">
             <h2 class="section-title">The Reviews Are In</h2>
-            <div class="testimonial-grid" id="testimonial-container">
-                <!-- Testimonials will be generated by JavaScript -->
-            </div>
+            <div class="testimonial-grid" id="testimonial-container"></div>
         </section>
     </div>
 
-    <!-- ================= PAGE: CONTACT ================= -->
+    <!-- CONTACT PAGE -->
     <div id="page-contact" class="page">
         <section class="section-container">
             <div class="contact-wrapper">
@@ -774,33 +640,13 @@
         </section>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; <span id="year"></span> Riya Bakes (Scrumptybies). All rights reserved.</p>
     </footer>
 
-    <!-- VISUAL EDITOR PANEL -->
-    <button id="edit-toggle-btn" onclick="toggleEditor()">✏️ Edit Mode</button>
-    
-    <div id="visual-editor-panel">
-        <div class="ve-header">
-            <span>Visual Editor</span>
-            <button onclick="toggleEditor()">✖</button>
-        </div>
-        <div class="ve-body" id="ve-form-container">
-            <!-- Form fields generated here -->
-            <p style="text-align:center; color:#666;">Loading content...</p>
-        </div>
-        <div class="ve-footer">
-            <button class="ve-save-btn" onclick="saveAndDownload()">💾 Save & Generate Code</button>
-            <p style="font-size: 0.7rem; color: #666; margin-top: 10px;">A popup will appear with your updated code. Copy it and paste it into your index.html file.</p>
-        </div>
-    </div>
-
-    <!-- Interactive JavaScript -->
     <script>
-        // --- DEFAULT CONTENT (Used if no saved data exists) ---
-        let SITE_CONTENT = {
+        // --- SITE CONTENT ---
+        const SITE_CONTENT = {
             siteTitle: "Riya Bakes | Scrumptybies",
             logoText: "Riya Bakes",
             navLinks: [
@@ -872,14 +718,12 @@
 
         // --- RENDER FUNCTIONS ---
         function renderSite() {
-            // 1. Set Page Title
             document.title = SITE_CONTENT.siteTitle;
             document.getElementById('year').innerText = new Date().getFullYear();
 
-            // 2. Navigation & Logo
             document.getElementById('nav-logo').innerText = SITE_CONTENT.logoText;
             const navMenu = document.getElementById('nav-menu');
-            navMenu.innerHTML = ''; 
+            navMenu.innerHTML = '';
             SITE_CONTENT.navLinks.forEach(link => {
                 const li = document.createElement('li');
                 const a = document.createElement('a');
@@ -888,17 +732,15 @@
                 a.id = 'nav-' + link.page;
                 a.onclick = () => showPage(link.page);
                 li.appendChild(a);
-                navMenu.insertBefore(li, navMenu.firstChild);
+                navMenu.appendChild(li);   // Appends in array order: Home, Menu, Reviews, Order
             });
             const themeLi = document.createElement('li');
             themeLi.innerHTML = '<button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">🌙</button>';
             navMenu.appendChild(themeLi);
             document.getElementById('nav-home').classList.add('active');
 
-            // 3. Ticker
             document.getElementById('ticker-content').innerText = SITE_CONTENT.tickerText + SITE_CONTENT.tickerText;
 
-            // 4. Home Page
             document.getElementById('hero-title-top').innerText = SITE_CONTENT.hero.titleTop;
             document.getElementById('hero-title-main').innerText = SITE_CONTENT.hero.titleMain;
             document.getElementById('hero-image').src = SITE_CONTENT.hero.image;
@@ -916,10 +758,9 @@
                 highlightsList.appendChild(li);
             });
 
-            // 5. Menu Page
             const menuContainer = document.getElementById('menu-container');
             menuContainer.innerHTML = '';
-            SITE_CONTENT.menuSections.forEach((section, sIndex) => {
+            SITE_CONTENT.menuSections.forEach((section) => {
                 const sectionTitle = document.createElement('h2');
                 sectionTitle.className = 'section-title';
                 sectionTitle.innerText = section.title;
@@ -929,7 +770,7 @@
                 grid.className = 'grid-layout';
                 grid.style.marginBottom = '80px';
 
-                section.items.forEach((item, iIndex) => {
+                section.items.forEach((item) => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     if (section.items.length === 1 && section.title === "Nutella Tarts") {
@@ -938,7 +779,7 @@
                         card.style.margin = "0 auto";
                     }
                     card.innerHTML = `
-                        <img src="${item.image}" class="editable-img" alt="${item.name}" onclick="handleImageUpload('menuSections[${sIndex}].items[${iIndex}].image')">
+                        <img src="${item.image}" alt="${item.name}">
                         <div class="card-content">
                             <h3>${item.name}</h3>
                             ${item.price ? `<p class="price">${item.price}</p>` : ''}
@@ -950,21 +791,19 @@
                 menuContainer.appendChild(grid);
             });
 
-            // 6. Testimonials Page
             const testimonialContainer = document.getElementById('testimonial-container');
             testimonialContainer.innerHTML = '';
-            SITE_CONTENT.testimonials.forEach((test, index) => {
+            SITE_CONTENT.testimonials.forEach((test) => {
                 const card = document.createElement('div');
                 card.className = 'testimonial-card';
                 card.innerHTML = `
-                    <img src="${test.image}" class="editable-img" alt="Review" onclick="handleImageUpload('testimonials[${index}].image')">
+                    <img src="${test.image}" alt="Review">
                     <p class="testimonial-date">${test.date}</p>
                     <p class="testimonial-text">${test.text}</p>
                 `;
                 testimonialContainer.appendChild(card);
             });
 
-            // 7. Contact Page
             document.getElementById('contact-title').innerText = SITE_CONTENT.contact.title;
             document.getElementById('contact-text').innerText = SITE_CONTENT.contact.text;
             const methodsList = document.getElementById('contact-methods');
@@ -980,205 +819,10 @@
             contactBtn.href = SITE_CONTENT.contact.buttonLink;
             document.getElementById('contact-map').src = SITE_CONTENT.contact.mapEmbedUrl;
 
-            // 8. Theme Preference
             if (localStorage.getItem('theme') === 'dark') {
                 document.body.classList.add('dark-mode');
                 document.getElementById('theme-btn').innerText = '☀️';
             }
-        }
-
-        // --- VISUAL EDITOR LOGIC ---
-        let isEditorOpen = false;
-
-        function toggleEditor() {
-            isEditorOpen = !isEditorOpen;
-            const panel = document.getElementById('visual-editor-panel');
-            const btn = document.getElementById('edit-toggle-btn');
-            
-            if (isEditorOpen) {
-                panel.classList.add('open');
-                btn.innerText = '✖ Close Editor';
-                buildEditorForm();
-            } else {
-                panel.classList.remove('open');
-                btn.innerText = '✏️ Edit Mode';
-            }
-        }
-
-        function buildEditorForm() {
-            const container = document.getElementById('ve-form-container');
-            container.innerHTML = '';
-
-            function createInput(label, value, path) {
-                const div = document.createElement('div');
-                div.innerHTML = `
-                    <label>${label}</label>
-                    <input type="text" value="${value.replace(/"/g, '&quot;')}" oninput="updateContent('${path}', this.value)">
-                `;
-                return div;
-            }
-
-            // --- General ---
-            container.appendChild(createInput("Logo Text", SITE_CONTENT.logoText, "logoText"));
-            container.appendChild(createInput("Ticker Text", SITE_CONTENT.tickerText, "tickerText"));
-            container.appendChild(document.createElement('hr'));
-
-            // --- Hero ---
-            container.appendChild(createInput("Hero Title Top", SITE_CONTENT.hero.titleTop, "hero.titleTop"));
-            container.appendChild(createInput("Hero Title Main", SITE_CONTENT.hero.titleMain, "hero.titleMain"));
-            container.appendChild(document.createElement('hr'));
-
-            // --- About ---
-            container.appendChild(createInput("About Title", SITE_CONTENT.about.title, "about.title"));
-            container.appendChild(createInput("About Paragraph 1", SITE_CONTENT.about.paragraph1, "about.paragraph1"));
-            container.appendChild(createInput("About Paragraph 2", SITE_CONTENT.about.paragraph2, "about.paragraph2"));
-            container.appendChild(document.createElement('hr'));
-
-            // --- Menu ---
-            SITE_CONTENT.menuSections.forEach((section, sIndex) => {
-                const sectionHeader = document.createElement('h3');
-                sectionHeader.innerText = `Menu: ${section.title}`;
-                sectionHeader.style.marginTop = "15px";
-                sectionHeader.style.color = "var(--neon-pink)";
-                container.appendChild(sectionHeader);
-
-                section.items.forEach((item, iIndex) => {
-                    container.appendChild(createInput(`Item ${iIndex+1} Name`, item.name, `menuSections[${sIndex}].items[${iIndex}].name`));
-                    container.appendChild(createInput(`Item ${iIndex+1} Price`, item.price, `menuSections[${sIndex}].items[${iIndex}].price`));
-                    container.appendChild(createInput(`Item ${iIndex+1} Description`, item.description, `menuSections[${sIndex}].items[${iIndex}].description`));
-                });
-            });
-
-            // --- Testimonials ---
-            const testHeader = document.createElement('h3');
-            testHeader.innerText = "Testimonials";
-            testHeader.style.marginTop = "15px";
-            testHeader.style.color = "var(--neon-pink)";
-            container.appendChild(testHeader);
-            SITE_CONTENT.testimonials.forEach((test, index) => {
-                container.appendChild(createInput(`Review ${index+1} Date`, test.date, `testimonials[${index}].date`));
-                container.appendChild(createInput(`Review ${index+1} Text`, test.text, `testimonials[${index}].text`));
-            });
-
-            // --- Contact ---
-            const contactHeader = document.createElement('h3');
-            contactHeader.innerText = "Contact";
-            contactHeader.style.marginTop = "15px";
-            contactHeader.style.color = "var(--neon-pink)";
-            container.appendChild(contactHeader);
-            container.appendChild(createInput("Contact Title", SITE_CONTENT.contact.title, "contact.title"));
-            container.appendChild(createInput("Contact Text", SITE_CONTENT.contact.text, "contact.text"));
-            container.appendChild(createInput("Instagram Handle", SITE_CONTENT.contact.methods[0].value, "contact.methods[0].value"));
-            container.appendChild(createInput("Instagram Link", SITE_CONTENT.contact.methods[0].link, "contact.methods[0].link"));
-            container.appendChild(createInput("WhatsApp Number", SITE_CONTENT.contact.methods[1].value, "contact.methods[1].value"));
-            container.appendChild(createInput("WhatsApp Link", SITE_CONTENT.contact.methods[1].link, "contact.methods[1].link"));
-            container.appendChild(createInput("Button Text", SITE_CONTENT.contact.buttonText, "contact.buttonText"));
-            container.appendChild(createInput("Button Link", SITE_CONTENT.contact.buttonLink, "contact.buttonLink"));
-            container.appendChild(createInput("Map Embed URL", SITE_CONTENT.contact.mapEmbedUrl, "contact.mapEmbedUrl"));
-        }
-
-        window.updateContent = function(path, value) {
-            const keys = path.split('.');
-            let obj = SITE_CONTENT;
-            for (let i = 0; i < keys.length - 1; i++) {
-                const key = keys[i].replace(/\[(\d+)\]/g, '.$1');
-                const keyParts = key.split('.');
-                for (let kp of keyParts) {
-                    obj = obj[kp];
-                }
-            }
-            const lastKey = keys[keys.length - 1].replace(/\[(\d+)\]/g, '.$1');
-            const lastParts = lastKey.split('.');
-            if (lastParts.length === 1) {
-                obj[lastParts[0]] = value;
-            } else {
-                let finalObj = obj;
-                for (let i = 0; i < lastParts.length - 1; i++) {
-                    finalObj = finalObj[lastParts[i]];
-                }
-                finalObj[lastParts[lastParts.length - 1]] = value;
-            }
-            renderSite();
-        };
-
-        window.handleImageUpload = function(path) {
-            if (!isEditorOpen) {
-                alert("Please click '✏️ Edit Mode' in the bottom right corner first to change images.");
-                return;
-            }
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
-            input.onchange = function(e) {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const base64String = event.target.result;
-                    const keys = path.split('.');
-                    let obj = SITE_CONTENT;
-                    for (let i = 0; i < keys.length - 1; i++) {
-                        const key = keys[i].replace(/\[(\d+)\]/g, '.$1');
-                        const keyParts = key.split('.');
-                        for (let kp of keyParts) {
-                            obj = obj[kp];
-                        }
-                    }
-                    const lastKey = keys[keys.length - 1].replace(/\[(\d+)\]/g, '.$1');
-                    const lastParts = lastKey.split('.');
-                    if (lastParts.length === 1) {
-                        obj[lastParts[0]] = base64String;
-                    } else {
-                        let finalObj = obj;
-                        for (let i = 0; i < lastParts.length - 1; i++) {
-                            finalObj = finalObj[lastParts[i]];
-                        }
-                        finalObj[lastParts[lastParts.length - 1]] = base64String;
-                    }
-                    renderSite();
-                };
-                reader.readAsDataURL(file);
-            };
-            input.click();
-        };
-
-        // --- GENERATE CODE TO COPY (NEW SIMPLER VERSION) ---
-        function saveAndDownload() {
-            const contentString = JSON.stringify(SITE_CONTENT, null, 4);
-            
-            const modal = document.createElement('div');
-            modal.style.position = 'fixed';
-            modal.style.top = '10%';
-            modal.style.left = '10%';
-            modal.style.width = '80%';
-            modal.style.height = '80%';
-            modal.style.background = '#fff';
-            modal.style.zIndex = '10000';
-            modal.style.padding = '20px';
-            modal.style.borderRadius = '10px';
-            modal.style.boxShadow = '0 0 20px rgba(0,0,0,0.5)';
-            modal.style.display = 'flex';
-            modal.style.flexDirection = 'column';
-            
-            modal.innerHTML = `
-                <h3 style="margin-bottom:10px; font-family:sans-serif;">✅ Step 1: Copy this code</h3>
-                <p style="margin-bottom:10px; font-family:sans-serif; font-size:0.9rem;">Press Ctrl+C (or Cmd+C) to copy the text below. Then follow Step 2.</p>
-                <textarea id="copy-area" style="flex:1; width:100%; font-family:monospace; font-size:12px; padding:10px; border:1px solid #ccc; border-radius:5px; resize:none;">${contentString}</textarea>
-                <div style="margin-top:15px; display:flex; gap:10px;">
-                    <button onclick="document.getElementById('copy-area').select(); document.execCommand('copy'); alert('Copied to clipboard!');" style="padding:10px 20px; background:#000; color:#fff; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">📋 Copy to Clipboard</button>
-                    <button onclick="this.parentElement.parentElement.remove()" style="padding:10px 20px; background:#ccc; color:#000; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">✖ Close</button>
-                </div>
-                <p style="margin-top:15px; font-family:sans-serif; font-size:0.9rem; background:#f0f0f0; padding:10px; border-radius:5px;">
-                    <strong>✅ Step 2:</strong> Open your <code>index.html</code> file in a text editor. Find the line that starts with <code>let SITE_CONTENT = {</code> and ends with <code>};</code>. Replace that entire block with the code you just copied. Then save the file and upload it to GitHub.
-                </p>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            setTimeout(() => {
-                const ta = document.getElementById('copy-area');
-                if(ta) { ta.focus(); ta.select(); }
-            }, 100);
         }
 
         function showPage(pageId) {
@@ -1209,7 +853,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             renderSite();
         });
-
     </script>
 
 </body>
