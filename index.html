@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riya Bakes | Scrumptybies</title>
 
-    <!-- Google Fonts for Gen Z Vibe -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Syne:wght@700;800&family=Caveat:wght@700&family=Sacramento&display=swap" rel="stylesheet">
@@ -240,18 +239,18 @@
         }
 
         .hero-image {
-         flex: 1;
+            flex: 1;
             min-width: 300px;
             display: flex;
             justify-content: center;
-            align-items: center;   
+            align-items: center;
         }
 
         .hero-image img {
-         width: 550px;                
-            max-width: 100%;             
-            height: auto;               
-            border-radius: 30px;         
+            width: 550px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 30px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
             transition: transform 0.4s;
             border: 4px solid rgba(255,255,255,0.2);
@@ -458,12 +457,12 @@
             border-color: var(--neon-pink);
             transform: rotate(1deg);
         }
-.testimonial-card img {
-    width: 100%;
-    height: auto;              /* natural height, no crop */
-    border-radius: 15px;
-    display: block;
-}
+
+        .testimonial-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            display: block;
         }
 
         .testimonial-text {
@@ -702,8 +701,8 @@
             testimonials: [
                 { date: "7 Sept 2025", text: "\"I just tried these Red Velvet Brownies and WOW – they're absolutely amazing! Perfectly rich, moist, and packed with flavor, they completely satisfied my taste buds. If you're looking for a sweet treat that hits all the right notes, you HAVE to try these!\"", image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790137434/6129769804823468478.jpg" },
                 { date: "11 May 2025", text: "\"Who would have thought biscoff and brownies would be a perfect match and be superrr comforting! Well @scrumpybites did it! Im was already an official fan of theirs but my heart is all there! The most tastiest brownie! Will def get more! ❤️❤️❤️ Thank you for the brownies 🫣\"", image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790143780/6129769804823468477.jpg" },
-                { date: "11 Dec 2024", text: "\""Hi dear, just wanted to tell you that the tres leches were very good🥰 It was really nice and great for the rainy weather!"\"", image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790144185/6129769804823468509.jpg" },
-                { date: "29 Dec 2024", text: "\"From Our Beautiful Customer \"", image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790144457/6129769804823468508.jpg" }
+                { date: "11 Dec 2024", text: "\"Hi dear, just wanted to tell you that the tres leches were very good🥰 It was really nice and great for the rainy weather!\"", image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790144185/6129769804823468509.jpg" },
+                { date: "29 Dec 2024", text: "\"From Our Beautiful Customer\"", image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790144457/6129769804823468508.jpg" }
             ],
             contact: {
                 title: "Ready to order?",
@@ -734,7 +733,7 @@
                 a.id = 'nav-' + link.page;
                 a.onclick = () => showPage(link.page);
                 li.appendChild(a);
-                navMenu.appendChild(li);   // Appends in array order: Home, Menu, Reviews, Order
+                navMenu.appendChild(li);
             });
             const themeLi = document.createElement('li');
             themeLi.innerHTML = '<button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">🌙</button>';
