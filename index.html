@@ -907,17 +907,51 @@
                         card.style.maxWidth = "800px";
                         card.style.margin = "0 auto";
                     }
+
+                    // Build the price HTML: either a table or a single price
+                    let priceHTML = '';
+                    if (item.priceTable) {
+                        let rows = '';
+                        item.priceTable.forEach(row => {
+                            rows += `<div class="price-row"><span class="qty">${row.qty}</span><span class="amt">${row.price}</span></div>`;
+                        });
+                        priceHTML = `<div class="price-table">${rows}</div>`;
+                    } else if (item.price) {
+                        priceHTML = `<p class="price">${item.price}</p>`;
+                    }
+
                     card.innerHTML = `
                         <img src="${item.image}" alt="${item.name}">
                         <div class="card-content">
                             <h3>${item.name}</h3>
-                            ${item.price ? `<p class="price">${item.price}</p>` : ''}
+                            ${priceHTML}
                             <p class="description">${item.description}</p>
                         </div>
                     `;
                     grid.appendChild(card);
                 });
+
                 menuContainer.appendChild(grid);
+
+                // Special Mixed Flavour Box callout for Brownies section
+                if (section.title === "Brownies") {
+                    const note = document.createElement('div');
+                    note.style.cssText = `
+                        max-width: 800px;
+                        margin: 0 auto 80px auto;
+                        padding: 25px 30px;
+                        background: var(--gradient-main);
+                        border-radius: 25px;
+                        color: #fff;
+                        text-align: center;
+                        box-shadow: 0 10px 25px rgba(255, 42, 109, 0.3);
+                    `;
+                    note.innerHTML = `
+                        <h3 style="font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; font-size: 1.3rem;">🎁 36-pc Mixed Flavour Box</h3>
+                        <p style="font-size: 1rem; opacity: 0.95; margin: 0;">Choose 2 flavours — 18 pieces each.</p>
+                    `;
+                    menuContainer.appendChild(note);
+                }
             });
 
             const testimonialContainer = document.getElementById('testimonial-container');
