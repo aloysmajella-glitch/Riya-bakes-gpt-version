@@ -673,28 +673,91 @@
                 ],
                 image: "https://res.cloudinary.com/xa2ozx8l/image/upload/a_-90/a_hflip/Screenshot_2026-09-16_162520.png"
             },
-            menuSections: [
+                        menuSections: [
                 {
                     title: "Tres Leches",
                     items: [
-                        { name: "Original", price: "$16.50", description: "Ultra-moist sponge soaked in three sweet milks, topped with whipped cream and cinnamon.", image: "images/original-tres.jpg" },
-                        { name: "Rasamalai", price: "$17.50", description: "A cozy fusion twist! Three-milk sponge infused with aromatic spiced chai tea.", image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790056882/6127457952777049022_1.jpg" },
-                        { name: "Chai", price: "$16.50", description: "East-meets-West: cardamom, saffron, and traditional Indian tea flavors.", image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790056985/6129769804823468381_1.jpg" }
+                        { 
+                            name: "Original", 
+                            price: "$8.00", 
+                            description: "Ultra-moist sponge soaked in three sweet milks, topped with whipped cream and cinnamon.", 
+                            image: "images/original-tres.jpg" 
+                        },
+                        { 
+                            name: "Chai", 
+                            price: "$8.50", 
+                            description: "East-meets-West: cardamom, saffron, and traditional Indian tea flavors.", 
+                            image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790056985/6129769804823468381_1.jpg" 
+                        },
+                        { 
+                            name: "Rasmalai", 
+                            price: "$9.50", 
+                            description: "A cozy fusion twist! Three-milk sponge infused with aromatic spiced chai tea.", 
+                            image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790056882/6127457952777049022_1.jpg" 
+                        }
                     ]
                 },
                 {
                     title: "Brownies",
                     items: [
-                        { name: "Classic", price: "$6.50", description: "Rich, fudgy, and deeply chocolatey. The ultimate brownie experience.", image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790057110/6129769804823468456_1.jpg" },
-                        { name: "Biscoff", price: "$6.50", description: "Packed with caramelized Lotus Biscoff spread and a crunchy biscuit topping.", image: "images/biscoff.jpg" },
-                        { name: "Nutella", price: "$6.50", description: "Our signature fudgy brownie swirled with a generous, gooey swirl of Nutella.", image: "images/Riyabrownies.jpg.jpg" },
-                        { name: "Red Velvet", price: "$6.50", description: "A vibrant, velvety cocoa base marbled with a rich cream cheese swirl.", image: "images/red-velvet.jpg" }
+                        {
+                            name: "Classic",
+                            description: "Rich, fudgy, and deeply chocolatey. The ultimate brownie experience.",
+                            image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790057110/6129769804823468456_1.jpg",
+                            priceTable: [
+                                { qty: "2 pcs", price: "$7" },
+                                { qty: "4 pcs", price: "$13" },
+                                { qty: "6 pcs", price: "$18" },
+                                { qty: "36 Bite-Sized", price: "$32" }
+                            ]
+                        },
+                        {
+                            name: "Nutella",
+                            description: "Our signature fudgy brownie swirled with a generous, gooey swirl of Nutella.",
+                            image: "images/Riyabrownies.jpg.jpg",
+                            priceTable: [
+                                { qty: "2 pcs", price: "$9" },
+                                { qty: "4 pcs", price: "$17" },
+                                { qty: "6 pcs", price: "$24" },
+                                { qty: "36 Bite-Sized", price: "$38" }
+                            ]
+                        },
+                        {
+                            name: "Biscoff",
+                            description: "Packed with caramelized Lotus Biscoff spread and a crunchy biscuit topping.",
+                            image: "images/biscoff.jpg",
+                            priceTable: [
+                                { qty: "2 pcs", price: "$9" },
+                                { qty: "4 pcs", price: "$17" },
+                                { qty: "6 pcs", price: "$25" },
+                                { qty: "36 Bite-Sized", price: "$40" }
+                            ]
+                        },
+                        {
+                            name: "Red Velvet + Cream Cheese",
+                            description: "A vibrant, velvety cocoa base marbled with a rich cream cheese swirl.",
+                            image: "images/red-velvet.jpg",
+                            priceTable: [
+                                { qty: "2 pcs", price: "$10" },
+                                { qty: "4 pcs", price: "$18" },
+                                { qty: "6 pcs", price: "$26" },
+                                { qty: "36 Bite-Sized", price: "$40" }
+                            ]
+                        }
                     ]
                 },
                 {
                     title: "Nutella Tarts",
                     items: [
-                        { name: "Signature Nutella Tarts", price: "", description: "Buttery, crumbly tart shell filled to the brim with rich, velvety Nutella.", image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790057475/6129769804823468463_1.jpg" }
+                        {
+                            name: "Signature Nutella Tarts",
+                            description: "Buttery, crumbly tart shell filled to the brim with rich, velvety Nutella.",
+                            image: "https://res.cloudinary.com/xa2ozx8l/image/upload/v1790057475/6129769804823468463_1.jpg",
+                            priceTable: [
+                                { qty: "Mini (~8 pcs)", price: "$6" },
+                                { qty: "Regular (~50 pcs)", price: "$28" }
+                            ]
+                        }
                     ]
                 }
             ],
