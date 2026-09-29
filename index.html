@@ -414,7 +414,56 @@
             margin-bottom: 5px;
             text-transform: uppercase;
         }
+        /* --- MULTI-TIER PRICE TABLE STYLES --- */
+        .price-table {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: rgba(0,0,0,0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
 
+        body.dark-mode .price-table {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            padding: 4px 0;
+            border-bottom: 1px dashed rgba(0,0,0,0.08);
+        }
+
+        body.dark-mode .price-row {
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-row .qty {
+            font-weight: 600;
+            opacity: 0.75;
+            font-size: 0.85rem;
+        }
+
+        .price-row .amt {
+            font-weight: 800;
+            font-family: var(--font-heading);
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1rem;
+        }
+    
         .price {
             font-weight: 800;
             color: var(--neon-blue);
