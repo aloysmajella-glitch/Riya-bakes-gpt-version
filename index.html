@@ -143,10 +143,11 @@
             overflow: hidden;
             background: var(--gradient-main);
             padding: 10px 0;
-            margin-top: 70px;
+            margin-top: 70px; /* JS will override this on mobile */
             white-space: nowrap;
-            position: relative; /* ADDED: ensures it sits in the flow */
-            z-index: 10;        /* ADDED: ensures it's not hidden behind other elements */
+            position: relative;
+            z-index: 10;
+            transition: margin-top 0.2s ease;
         }
 
         .ticker {
@@ -292,7 +293,8 @@
             border-radius: 2px;
         }
 
-        .-section {
+        /* FIXED: was .-section, now .about-section */
+        .about-section {
             background: var(--card-bg-light);
             backdrop-filter: blur(10px);
             padding: 50px;
@@ -309,12 +311,13 @@
             z-index: 10;
         }
 
-        body.dark-mode .-section {
+        body.dark-mode .about-section {
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .-text {
+        /* FIXED: was .-text, now .about-text */
+        .about-text {
             flex: 1;
             min-width: 300px;
             max-width: 500px;
@@ -488,19 +491,13 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .description {
-            font-size: 0.95rem;
-            opacity: 0.8;
-            line-height: 1.5;
-        }
-
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
 
-                .testimonial-card {
+        .testimonial-card {
             background: var(--card-bg-light);
             border-radius: 20px;
             padding: 20px;
@@ -630,29 +627,24 @@
             .about-section { padding: 30px; margin-top: 0; border-radius: 0; }
             nav { padding: 15px 20px; flex-direction: column; gap: 15px; }
             nav ul { flex-wrap: wrap; justify-content: center; }
-            
-            /* --- PHONE FIX STARTS HERE --- */
-            .ticker-wrap { 
-                margin-top: 140px; /* Pushes ticker below the taller stacked mobile nav */
-                padding: 8px 0;    /* Slightly smaller padding for mobile */
-            }
+
+            /* Ticker position is handled automatically by JavaScript */
             .ticker {
-                font-size: 1rem;   /* Slightly smaller text so more fits on screen */
+                font-size: 1rem;   /* Smaller text so more fits on the phone screen */
             }
-            /* --- PHONE FIX ENDS HERE --- */
         }
     </style>
 </head>
 <body>
 
-    <nav>
+    <nav id="main-nav">
         <div class="nav-logo" id="nav-logo"></div>
         <ul id="nav-menu">
             <li><button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">🌙</button></li>
         </ul>
     </nav>
 
-    <div class="ticker-wrap">
+    <div class="ticker-wrap" id="main-ticker">
         <div class="ticker" id="ticker-content"></div>
     </div>
 
@@ -745,7 +737,7 @@
                 ],
                 image: "images/Riyaprofilephoto.jpg.jpg"
             },
-                        menuSections: [
+            menuSections: [
                 {
                     title: "Tres Leches",
                     items: [
@@ -856,6 +848,25 @@
             }
         };
 
+        // --- AUTO-ADJUST TICKER POSITION ---
+        // Measures the real height of the nav bar and positions the ticker right below it.
+        // This ensures the ticker is always visible, no matter how tall the nav gets on mobile.
+        function adjustTickerPosition() {
+            const nav = document.getElementById('main-nav');
+            const ticker = document.getElementById('main-ticker');
+            if (!nav || !ticker) return;
+
+            const navHeight = nav.offsetHeight;
+
+            if (window.innerWidth <= 900) {
+                // Mobile: push ticker exactly below the stacked nav
+                ticker.style.marginTop = navHeight + 'px';
+            } else {
+                // Desktop: revert to original spacing
+                ticker.style.marginTop = '70px';
+            }
+        }
+
         // --- RENDER FUNCTIONS ---
         function renderSite() {
             document.title = SITE_CONTENT.siteTitle;
@@ -919,7 +930,6 @@
                         card.style.margin = "0 auto";
                     }
 
-                    // Build the price HTML: either a table or a single price
                     let priceHTML = '';
                     if (item.priceTable) {
                         let rows = '';
@@ -944,7 +954,6 @@
 
                 menuContainer.appendChild(grid);
 
-                // Special Mixed Flavour Box callout for Brownies section
                 if (section.title === "Brownies") {
                     const note = document.createElement('div');
                     note.style.cssText = `
@@ -997,6 +1006,9 @@
                 document.body.classList.add('dark-mode');
                 document.getElementById('theme-btn').innerText = '☀️';
             }
+
+            // Adjust ticker position AFTER nav has been fully rendered
+            adjustTickerPosition();
         }
 
         function showPage(pageId) {
@@ -1024,9 +1036,19 @@
             }
         }
 
+        // --- EVENT LISTENERS ---
         document.addEventListener('DOMContentLoaded', function() {
             renderSite();
         });
+
+        // Recalculate ticker position on resize and orientation change
+        window.addEventListener('resize', adjustTickerPosition);
+        window.addEventListener('orientationchange', adjustTickerPosition);
+
+        // Also recalculate when fonts finish loading (they can change nav height)
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(adjustTickerPosition);
+        }
     </script>
 
 </body>
