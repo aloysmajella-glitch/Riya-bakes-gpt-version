@@ -145,6 +145,8 @@
             padding: 10px 0;
             margin-top: 70px;
             white-space: nowrap;
+            position: relative; /* ADDED: ensures it sits in the flow */
+            z-index: 10;        /* ADDED: ensures it's not hidden behind other elements */
         }
 
         .ticker {
@@ -628,7 +630,16 @@
             .about-section { padding: 30px; margin-top: 0; border-radius: 0; }
             nav { padding: 15px 20px; flex-direction: column; gap: 15px; }
             nav ul { flex-wrap: wrap; justify-content: center; }
-            .ticker-wrap { margin-top: 120px; }
+            
+            /* --- PHONE FIX STARTS HERE --- */
+            .ticker-wrap { 
+                margin-top: 140px; /* Pushes ticker below the taller stacked mobile nav */
+                padding: 8px 0;    /* Slightly smaller padding for mobile */
+            }
+            .ticker {
+                font-size: 1rem;   /* Slightly smaller text so more fits on screen */
+            }
+            /* --- PHONE FIX ENDS HERE --- */
         }
     </style>
 </head>
